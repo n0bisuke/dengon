@@ -1,0 +1,1 @@
+function Listeners(){var n={push:{},set:{},remove:{},send:{}};return{add:function(e,r,t){n[e][r]||(n[e][r]=[]),n[e][r].push(t)},del:function(e,r){n[e][r]=[]},fire:function(e,r,t){n[e][r].forEach(function(n){n(t)})},get_subscribes:function(){var e=[];for(var r in n)for(var t in n[r])e.push({event:r,path:t});return e}}}module.exports=Listeners;

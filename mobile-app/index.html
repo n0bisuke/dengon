@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>伝言Pepper</title>
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900' rel='stylesheet' type='text/css'>    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="heading">Den-Gon Pepper</h1>
+    <form id="form">
+        <div class="form-container">
+            <div id="select-view" class="select-view">ほげ</div>
+            <select class="select" name="dear" id="dear">
+                <option value="">伝言する相手を選択してください</option>
+                <option value="nobisuke">のびすけ</option>
+                <option value="akkiy">あっきー</option>
+                <option value="tencho">店長</option>
+            </select>
+        </div>
+        <div class="form-container">
+            <textarea class="textarea" id="message" name="message" rows="8" cols="40"></textarea>
+        </div>
+        <div class="form-container" id="mood">
+            <div class="radio-container is-active">
+                <input type="radio" name="mood" value="normal">
+                <div class="radio-image"><img src="assets/images/pepper.png" alt=""></div>
+            </div>
+            <div class="radio-container">
+                <input type="radio" name="mood" value="angry">
+                <div class="radio-image"><img src="assets/images/pepper2.png" alt=""></div>
+            </div>
+            <div class="radio-container">
+                <input type="radio" name="mood" value="sad">
+                <div class="radio-image"><img src="assets/images/pepper3.png" alt=""></div>
+            </div>
+            <div class="radio-container">
+                <input type="radio" name="mood" value="fun">
+                <div class="radio-image"><img src="assets/images/pepper4.png" alt=""></div>
+            </div>
+        </div>
+        <div class="form-container">
+            <button id="submit" class="button" type="submit">送信</button>
+        </div>
+    </form>
+</div>
+<script src='assets/js/jquery.js'></script>
+<script src='https://cdn.mlkcca.com/v2.0.0/milkcocoa.js'></script>
+<script src='assets/js/app.js'></script>
+</body>
+</html>
