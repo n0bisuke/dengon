@@ -10,4 +10,7 @@ ds.on('push', function(res){
       console.log("ALMemory取得成功");
       ALMemory.raiseEvent("PepperQiMessaging/fromtablet", res.value);
     });
+    session.service("ALTextToSpeech").done(function(tts) {
+        tts.say(res.value.message);
+    });
 });
