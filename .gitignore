@@ -1,2 +1,3 @@
 .ftpconfig
 .ftpconfig_tmp
+server/node_modules
