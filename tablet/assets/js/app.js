@@ -23,6 +23,6 @@ session.service("ALFaceDetectionProxy").done(function(tts) {
 
 session.service("ALMemory").done(function (ALMemory) {
   ALMemory.raiseEvent("FaceDetected", function(res){
-      speech.say(res[1][0]);
+      speech.say('しゃべる！');
   });
 });
