@@ -15,32 +15,56 @@ var $toast = $('#toast');
 
 var toast;
 
-function submitHandler(e){
-    e.preventDefault();
-    var tension;
+function _castData(){
     var data = {
+        dear: $dear.find('option:selected').html(),
         from: $from.val(),
-        message: $message.val(),
         mood: $mood.find('input[name=mood]:checked').val()
     }
-    switch(data.mood){
+    data.message = _changeTone($message.val());
+    data.message = _castMoodMessage(data.message, data.mood);
+    return data;
+}
+
+function _changeTone(message){
+    var message = message.replace(/。/g, '--  。  ');
+    message = message.replace(/、/g, '  、  ');
+    message = message.replace(/。/g, '  ,  ');
+    message = message.replace(/,/g, '  ,  ');
+    return message;
+}
+
+
+function _castMoodMessage(message,mood){
+    switch(mood){
         case 'fun':
-            data.message = '\\vct=150\\' + data.message;
-            break;
+            return '\\vct=150\\' + message;
         case 'normal':
-            data.message = '\\vct=120\\' + data.message;
-            break;
+            return '\\vct=120\\' + message;
         case 'sad':
-            data.message = '\\vct=80\\' + data.message;
-            break;
+            return '\\vct=80\\' + message;
         case 'angry':
-            data.message = '\\vct=50\\' + data.message;
-            break;
+            return '\\vct=50\\' + message;
     }
+    return;
+}
+
+function submitHandler(e){
+    e.preventDefault();
+    var data = _castData();
+    console.log(data);
     ds = milkcocoa.dataStore('dengon/' + $dear.val());
-    if(true){
-        ds.push(data);
-        alert('送信完了');
+    if(data.dear && data.from && data.mood && data.message){
+        //ds.push(data);
+        Toast.show();
+        if(toast){
+            toast.clearTimeout;
+        }
+        toast = setTimeout(function(){
+            Toast.hide();
+        },3000);
+    }else{
+        alert('すべて入力してください');
     }
 }
 

@@ -39,7 +39,7 @@ function submitHandler(e){
     }
     ds = milkcocoa.dataStore('dengon/' + $dear.val());
     if(true){
-        ds.push(data);
+        //ds.push(data);
         Toast.show();
         if(toast){
             toast.clearTimeout;
