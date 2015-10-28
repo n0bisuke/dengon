@@ -4,33 +4,35 @@ var milkcocoa = new MilkCocoa("juiceig81r3wr.mlkcca.com");
 var ds = milkcocoa.dataStore('dengon');
 var app = express();
 
-// ds.on('push', function(res){
-//   console.log(res);
-// });
-
-// ds.stream().size(1).next(function(err, data) {
-//     console.log(data[0].value.message); // 最新の10件のデータ
-// });
-
 app.get('/', function (req, res) {
   console.log(req.query);
-  var mes = '';
-  if(req.query.hito === 'imouto'){
-    mes = 'こんにちは、いもうと。伝言があるよ。';
-    ds.stream().size(1).next(function(err, data) {
-        console.log(data[0].value.message); // 最新の10件のデータ
-        mes += data[0].value.message;
-        res.send({mes: mes, mood: data[0].value.mood, dear: data[0].value.dear});
-    });
+  if(!req.query.hito) return;
 
-  }else if(req.query.hito === 'nobisuke'){
-    mes = 'こんにちは、のびすけ';
-  }
+  milkcocoa.dataStore('dengon/'+hito).stream().size(1).next(function(err, data) {
+      console.log(data[0].value.message); // 最新の10件のデータ
+      var output = {
+        dengon: data[0].value.message,
+        mood: data[0].value.mood,
+        dear: data[0].value.dear
+      };
+      res.send(output);
+  });
 
-  // res.render('index', { title: 'Express' });
+  // if(req.query.hito === 'akkiy'){
+  //   mes = 'こんにちは、いもうと。伝言があるよ。';
+  //   milkcocoa.dataStore('dengon/akkiy');.stream().size(1).next(function(err, data) {
+  //       console.log(data[0].value.message); // 最新の10件のデータ
+  //       mes += data[0].value.message;
+  //       res.send({dengon: mes, mood: data[0].value.mood, dear: data[0].value.dear});
+  //   });
+  //
+  // }else if(req.query.hito === 'nobisuke'){
+  //   mes = 'こんにちは、のびすけ';
+  // }
+
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(80, function () {
   var host = server.address().address;
   var port = server.address().port;
 
