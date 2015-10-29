@@ -56,6 +56,7 @@ function submitHandler(e){
     ds = milkcocoa.dataStore('dengon/' + $dear.val());
     if(data.dear && data.from && data.mood && data.message){
         ds.push(data);
+        resetForm();
         Toast.show();
         if(toast){
             toast.clearTimeout;
@@ -77,6 +78,18 @@ function selectorChangeHandler(e){
     var val = $dear.find('option:selected').html();
     var dear = val ? val : '伝言する相手を選択してください';
     $selectView.html(dear);
+}
+
+function resetForm(){
+    $from.val('');
+    $dear.find('option').attr('selected', false)
+        .eq(0).attr('selected', 'selected');
+    $selectView.html('伝言する相手を選択してください');
+    $message.val('');
+    $mood.find('input[name=mood]').next().removeClass('is-active');
+    $mood.find('input[name=mood]').attr('checked', 'false')
+        .eq(0).attr('checked', 'checked')
+        .next().addClass('is-active');
 }
 
 
