@@ -55,7 +55,7 @@ function submitHandler(e){
     console.log(data);
     ds = milkcocoa.dataStore('dengon/' + $dear.val());
     if(data.dear && data.from && data.mood && data.message){
-        //ds.push(data);
+        ds.push(data);
         Toast.show();
         if(toast){
             toast.clearTimeout;
